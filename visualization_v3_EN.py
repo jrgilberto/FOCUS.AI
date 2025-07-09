@@ -3,7 +3,6 @@ import plotly.express as px
 import pandas as pd
 from datetime import datetime
 import logging
-# Assumes the previously translated file is named 'langchain_query_EN.py'
 from langchain_query_EN import process_question
 from data_processing import get_duckdb_connection
 import os
