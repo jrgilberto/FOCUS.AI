@@ -1,18 +1,16 @@
-# Para a Interface Web e Gráficos
+# Web Interface and visuals
 streamlit
 plotly
 pandas
 polars
-
-# Para o banco de dados em memória
+# DB in memory
 duckdb
-
-# Para a integração com LLMs via LangChain
+# LLM integration over LangChain
 langchain
 #langchain-openai
 langchain-groq
 #langchain-google-genai==2.1.5
 #google-generativeai==0.6.0
-# Para carregar as chaves de API do arquivo .env
+# Load key from .env file
 python-dotenv
 tiktoken
