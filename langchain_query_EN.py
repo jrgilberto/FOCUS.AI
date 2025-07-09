@@ -41,7 +41,7 @@ if not getattr(logger, 'has_run_before', False):
     logger.info(f"Standard logs will be saved to {log_file}")
     logger.has_run_before = True
 
-# --- PERFORMANCE CSV LOGGING SETUP (CORRECTED) ---
+# --- PERFORMANCE CSV LOGGING SETUP ---
 PERFORMANCE_LOG_FILE = os.path.join(log_dir, 'llm_performance_log.csv')
 CSV_HEADER = [
     'request_id',
@@ -100,7 +100,7 @@ llm = ChatOpenAI(
     max_tokens=4096
 )
 
-# Prompts remain the same...
+# Prompts
 sql_prompt_template = PromptTemplate.from_template(
     """
     Instructions:
@@ -260,8 +260,6 @@ def validate_query(sql_query):
         logger.error("Invalid query: does not use the consolidated_billing table")
         return False
     return True
-
-# --- CORRECTED FUNCTIONS ---
 
 def generate_sql(question, table_info, top_k=3):
     processed_question = preprocess_question(question)
