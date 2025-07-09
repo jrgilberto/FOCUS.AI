@@ -4,22 +4,21 @@ import os
 import logging
 from sqlalchemy import create_engine
 
-# Configurar logging
+# Conf logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-# Configurações
-INPUT_DIRECTORY = r"C:\Users\gilberto.junior\OneDrive - NTT\Documents\Consult-FinOps\FOCUS\UniE_Focus_data"
-OUTPUT_FILE = r"C:\Users\gilberto.junior\OneDrive - NTT\Desktop\Mestrado\FinOps\focus_billing_framework\data\src_parquet\focus_sample_100000.parquet"
+# Configurations
+INPUT_DIRECTORY = r"" #input here the path of source .parquet files
+OUTPUT_FILE = r"" #input here the path of output .parquet files
 DESIRED_COLUMNS = [
     "BilledCost", "BillingPeriodStart", "BillingPeriodEnd", "ConsumedQuantity", "ConsumedUnit", "ProviderName",
     "RegionId", "ResourceName", "ResourceType", "ResourceId",
     "ServiceCategory", "ServiceName", "SubAccountName",
-    "tag_application", "tag_environment", "tag_business_unit"  # Adicionadas as novas colunas
+    "tag_application", "tag_environment", "tag_business_unit"  
 ]
 
 def validate_directories():
-    """Verifica se os diretórios de entrada e saída são válidos."""
     if not os.path.exists(INPUT_DIRECTORY):
         logger.error(f"Diretório de entrada não existe: {INPUT_DIRECTORY}")
         return False
@@ -41,14 +40,11 @@ def validate_directories():
     return True
 
 def consolidate_parquet_files():
-    """Consolida arquivos Parquet do diretório de entrada em um único arquivo."""
     if not validate_directories():
         return False
-    
     dataframes = []
     parquet_files = []
     
-    # Buscar arquivos Parquet
     for root, _, files in os.walk(INPUT_DIRECTORY):
         for file in files:
             if file.endswith(".parquet"):
@@ -97,7 +93,6 @@ def consolidate_parquet_files():
         return False
 
 def get_duckdb_connection():
-    """Retorna uma conexão DuckDB com a tabela consolidated_billing carregada."""
     if not os.path.exists(OUTPUT_FILE):
         logger.error(f"Arquivo Parquet não encontrado: {OUTPUT_FILE}. Executando consolidação...")
         if not consolidate_parquet_files():
@@ -105,7 +100,6 @@ def get_duckdb_connection():
     
     con = duckdb.connect(database=':memory:')
     try:
-        # Verificar se a tabela já existe
         con.execute("SHOW TABLES")
         tables = [row[0] for row in con.fetchall()]
         if 'consolidated_billing' not in tables:
