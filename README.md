@@ -1,7 +1,7 @@
-# FOCUS.AI - Cloud Consumption Analysis Framework
+# OPTIC (Optimized Translation & Interaction for Cloud-costs Framework)
 
 A Framework for Natural Language Interaction with Cloud Billing Data.
-This repository contains the implementation of the FOCUS.AI framework, designed to simplify the analysis and management of cloud billing data in multi-cloud environments. By leveraging the FinOps Open Cost and Usage Specification (FOCUS) and Large Language Models (LLMs), this framework enables both technical and non-technical users to interact with standardized billing data through natural language queries, promoting FinOps principles and data-driven decision-making.
+This repository contains the implementation of the OPTIC framework, designed to simplify the analysis and management of cloud billing data in multi-cloud environments. By leveraging the FinOps Open Cost and Usage Specification (FOCUS) and Large Language Models (LLMs), this framework enables both technical and non-technical users to interact with standardized billing data through natural language queries, promoting FinOps principles and data-driven decision-making.
 
 ![Framework Screnshot](framework-screenshot.png)
 
